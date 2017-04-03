@@ -1,0 +1,97 @@
+#include <string>
+#include <vector>
+#include <list>
+#include <iostream>
+#include<time.h>
+
+ class Sort
+{
+    public:
+
+static void swap(std::vector<int> &a, int i, int j);
+
+static void sort(std::vector<int> &a);
+
+};
+
+void Sort::swap(std::vector<int> &a, int i, int j)
+{
+
+		int temp = a[i];
+
+		a[i] = a[j];
+
+		a[j] = temp;
+
+}
+
+void Sort::sort(std::vector<int> &a)
+{
+
+int n = a.size();
+std::cout<<"n value is"<<n<<"\n";
+int i;
+
+bool swapped = true;
+
+while (swapped)
+{
+
+  swapped = false;
+
+  for (i = 1; i< n; i += 2)
+  { 
+
+	 //if(a[i] > a[i+1]) {
+
+	  if (a[i]>a[i+1])
+	  { // C3: Changed
+
+		  swap(a, i, i + 1);
+
+		  swapped = true;
+
+	  }
+
+  }
+
+  for (i = 0; i< n; i += 2)
+  { 
+
+	  
+
+	  if (a[i]>a[i+1])
+	  { 
+
+		 swap(a, i, i + 1);
+
+		 swapped = true;
+
+	  }
+
+  }
+
+}
+
+}
+
+int main(std::vector<std::wstring> &args)
+{
+clock_t t1,t2;
+    t1=clock();    
+Sort s;
+    int myints[]={10,9,8,7,6,5,4,3,2,1};
+     std::vector<int> a(myints, myints + sizeof(myints) / sizeof(int) );
+
+s.sort(a);
+
+for (std::vector<int>::iterator it = a.begin(); it != a.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+t2=clock();
+    float diff ((float)t2-(float)t1);
+    std::cout<<"clock time="<<diff;
+    system ("pause");
+    return 0;
+
+}
